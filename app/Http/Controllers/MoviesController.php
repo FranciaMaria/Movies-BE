@@ -38,13 +38,13 @@ class MoviesController extends Controller
     {
         $movie = new Movie();
 
-        $this->validate($request, array(
+        $request->validate([
             'name' => 'required | unique:movies',
             'director' => 'required',
             'duration' => 'required | integer | min: 1 | max: 500',
             'imageUrl' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             'releaseDate' => 'required | unique:movies',
-        ));
+        ]);
 
         $movie->name = $request->input('name');
         $movie->director = $request->input('director');
@@ -90,14 +90,15 @@ class MoviesController extends Controller
     {
         $movie = Movie::find($id);
 
-        $this->validate($request, array(
+        $request->validate([
             'name' => 'required | unique:movies',
             'director' => 'required',
             'duration' => 'required | integer | min: 1 | max: 500',
             'imageUrl' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             'releaseDate' => 'required | unique:movies',
-        ));
+        ]);
 
+    
         $movie->name = $request->input('name');
         $movie->director = $request->input('director');
         $movie->imageUrl = $request->input('imageUrl');
@@ -105,6 +106,7 @@ class MoviesController extends Controller
         $movie->releaseDate = $request->input('releaseDate');
         $movie->genres = $request->input('genres');
         $movie->update();
+       
 
         return $movie;
 
