@@ -12,5 +12,9 @@ class Movie extends Model
         'genres' => 'array',
     ];
 
+    public static function search($term, $skip, $take)
+    {
+        return self::where('name', 'LIKE', '%'.$term.'%')->skip($skip)->take($take)->get();
+    }
     
 }

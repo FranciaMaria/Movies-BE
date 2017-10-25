@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\MovieRequest;
 use Illuminate\Http\Request;
 use App\Movie;
 
@@ -14,8 +14,23 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies = Movie::all();
-        return $movies;
+        //$movies = Movie::all();
+       // return $movies;
+        $name = request()->input('name');
+        $term = request()->input('term');
+        $skip = request()->input('skip', 0);
+        $take = request()->input('take', Movie::get()->count());
+
+        if($name){
+            return Movie::search($name, $skip, $take);
+        }
+        if ($term) {
+            return Movie::search($term, $skip, $take);
+        } else {
+            return Movie::skip($skip)->take($take)->get();
+        }
+
+        
     }
 
     /**
@@ -38,13 +53,13 @@ class MoviesController extends Controller
     {
         $movie = new Movie();
 
-        $request->validate([
+        /*$request->validate([
             'name' => 'required | unique:movies',
             'director' => 'required',
             'duration' => 'required | integer | min: 1 | max: 500',
             'imageUrl' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             'releaseDate' => 'required | unique:movies',
-        ]);
+        ]);*/
 
         $movie->name = $request->input('name');
         $movie->director = $request->input('director');
@@ -90,13 +105,13 @@ class MoviesController extends Controller
     {
         $movie = Movie::find($id);
 
-        $request->validate([
+        /*$request->validate([
             'name' => 'required | unique:movies',
             'director' => 'required',
             'duration' => 'required | integer | min: 1 | max: 500',
             'imageUrl' => 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/',
             'releaseDate' => 'required | unique:movies',
-        ]);
+        ]);*/
 
     
         $movie->name = $request->input('name');
