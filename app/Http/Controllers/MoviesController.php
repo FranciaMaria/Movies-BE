@@ -14,8 +14,8 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        //$movies = Movie::all();
-       // return $movies;
+        $movies = Movie::all();
+       
         $name = request()->input('name');
         $term = request()->input('term');
         $skip = request()->input('skip', 0);
@@ -24,6 +24,7 @@ class MoviesController extends Controller
         if($name){
             return Movie::search($name, $skip, $take);
         }
+        
         if ($term) {
             return Movie::search($term, $skip, $take);
         } else {
