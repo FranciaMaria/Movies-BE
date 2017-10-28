@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
              array('name'=>'Black Swan','director'=>'Darren Aronofsky','imageUrl'=>'http://www.imdb.com/title/tt0947798/mediaviewer/rm1503101184', 'duration'=>108,'releaseDate'=>Carbon::parse('17 December 2010'),'genres'=>["thriller", "drama"])
              ));*/
              $this->call(MoviesTableSeeder::class);
+             $this->call(UsersTableSeeder::class);
 
     }
 }
@@ -36,5 +37,13 @@ class MoviesTableSeeder extends Seeder
     public function run()
     {
         factory(App\Movie::class, 100)->create();
+    }
+}
+
+class UsersTableSeeder extends Seeder
+{
+    public function run()
+    {
+        factory(App\User::class, 10)->create();
     }
 }
