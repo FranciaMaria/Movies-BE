@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+*/
 Route::middleware('api')->get('/movies', 'MoviesController@index');
 Route::middleware('api')->get('/movies/{id}', 'MoviesController@show');
 Route::middleware('api')->post('/movies', 'MoviesController@store');
