@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
     return $request->user();
 });
 */
+Route::post('/register', 'Auth\RegisterController@create');
 Route::post('/login', 'Auth\LoginController@authenticate');
 /*Route::middleware('api')->get('/movies', 'MoviesController@index');
 Route::middleware('api')->get('/movies/{id}', 'MoviesController@show');
