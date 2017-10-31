@@ -19,13 +19,13 @@ use Illuminate\Http\Request;
 */
 Route::post('/register', 'Auth\RegisterController@create');
 Route::post('/login', 'Auth\LoginController@authenticate');
-/*Route::middleware('api')->get('/movies', 'MoviesController@index');
+Route::middleware('api')->get('/movies', 'MoviesController@index');
 Route::middleware('api')->get('/movies/{id}', 'MoviesController@show');
 Route::middleware('api')->post('/movies', 'MoviesController@store');
 Route::middleware('api')->put('/movies/{id}', 'MoviesController@update');
-Route::middleware('api')->delete('/movies/{id}', 'MoviesController@destroy');*/
-Route::middleware('jwt')->get('/movies', 'MoviesController@index');
+Route::middleware('api')->delete('/movies/{id}', 'MoviesController@destroy');
+/*Route::middleware('jwt')->get('/movies', 'MoviesController@index');
 Route::middleware('jwt')->get('/movies/{id}', 'MoviesController@show');
 Route::middleware('jwt')->post('/movies', 'MoviesController@store');
 Route::middleware('jwt')->put('/movies/{id}', 'MoviesController@update');
-Route::middleware('jwt')->delete('/movies/{id}', 'MoviesController@destroy');
+Route::middleware('jwt')->delete('/movies/{id}', 'MoviesController@destroy');*/
